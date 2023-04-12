@@ -1,0 +1,51 @@
+plugins {
+	id 'java'
+	id 'org.springframework.boot' version '3.0.5'
+	id 'io.spring.dependency-management' version '1.1.0'
+}
+
+group 'com.selenium.springboot'
+version '0.0.1-SNAPSHOT'
+
+java {
+	sourceCompatibility = JavaVersion.VERSION_17
+}
+
+ext {
+	junitJupiterVersion = "5.9.2"
+	seleniumVersion = "4.7.2"
+	guavaVersion = "31.1-jre"
+	junitPlatformVersion = "1.9.2"
+	httpClientVersion = "5.2.1"
+	springBootVersion = "3.0.5"
+	wdmVersion = "5.3.2"
+}
+
+repositories {
+	mavenCentral()
+}
+configurations {
+	compileOnly {
+		extendsFrom annotationProcessor
+	}
+}
+
+dependencies {
+	implementation "org.springframework.boot:spring-boot-starter:$springBootVersion"
+	testImplementation "org.springframework.boot:spring-boot-starter-test:$springBootVersion"
+	implementation "org.apache.httpcomponents.client5:httpclient5:$httpClientVersion"
+	testImplementation "org.junit.jupiter:junit-jupiter-api:$junitJupiterVersion"
+	testRuntimeOnly "org.junit.jupiter:junit-jupiter-engine:$junitJupiterVersion"
+	testImplementation "org.junit.platform:junit-platform-suite:$junitPlatformVersion"
+	implementation "org.seleniumhq.selenium:selenium-java:$seleniumVersion"
+	implementation "io.github.bonigarcia:webdrivermanager:$wdmVersion"
+	testImplementation "com.google.guava:guava:$guavaVersion"
+	compileOnly 'org.projectlombok:lombok'
+	annotationProcessor 'org.projectlombok:lombok'
+	testCompileOnly 'org.projectlombok:lombok'
+	testAnnotationProcessor 'org.projectlombok:lombok'
+}
+
+test {
+	useJUnitPlatform()
+}
