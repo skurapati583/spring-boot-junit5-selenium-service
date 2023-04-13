@@ -1,6 +1,7 @@
 package com.selenium.springboot.demoseleniumspringboot;
 
 import com.selenium.springboot.demoseleniumspringboot.library.DriverManager;
+import com.selenium.springboot.demoseleniumspringboot.utils.ElementActions;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -14,11 +15,20 @@ class DemoSeleniumSpringbootApplicationTests {
     @Autowired
     DriverManager driverManager;
 
+    @Autowired
+    ElementActions elementActions;
+
     @Value("${app.youtube.url}")
     private String youtubeURL;
 
+    @Value("${app.youtube.search_term}")
+    private String youtubeSearchTerm;
+
     @Value("${app.google.url}")
     private String googleURL;
+
+    @Value("${app.google.search_term}")
+    private String googleSearchTerm;
 
 
     @BeforeEach
@@ -33,14 +43,14 @@ class DemoSeleniumSpringbootApplicationTests {
 
     @Test
     void testYoutube() {
-        var driver = driverManager.getWebDriver();
-        driver.get(youtubeURL);
+        elementActions.launchURL(youtubeURL);
+        elementActions.enterText("#search-input > #search", youtubeSearchTerm);
+        elementActions.clickBtn("button#search-icon-legacy");
     }
 
     @Test
     void testGoogle() {
-        var driver = driverManager.getWebDriver();
-        driver.get(googleURL);
+        elementActions.launchURL(googleURL);
     }
 
 }

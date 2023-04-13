@@ -2,8 +2,9 @@ package com.selenium.springboot.demoseleniumspringboot.library;
 
 import com.google.common.base.Preconditions;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.support.ui.WebDriverWait;
 
-import java.net.MalformedURLException;
+import java.time.Duration;
 import java.util.Objects;
 
 public interface DriverManager {
@@ -15,6 +16,10 @@ public interface DriverManager {
     default WebDriver getWebDriver() {
         Preconditions.checkNotNull(DRIVER_INSTANCE.get(), "Driver Instance is null.");
         return DRIVER_INSTANCE.get();
+    }
+
+    default WebDriverWait getWebDriverWait() {
+        return new WebDriverWait(DRIVER_INSTANCE.get(), Duration.ofSeconds(25));
     }
 
     default void terminateWebDriverSession() {
