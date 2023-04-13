@@ -8,6 +8,7 @@ import org.openqa.selenium.remote.RemoteWebDriver;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
+import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Service;
 
 import java.net.MalformedURLException;
@@ -16,6 +17,7 @@ import java.net.URL;
 @Service
 @ConditionalOnProperty(name = "browsers.default-driver", havingValue = "chrome")
 @EnableConfigurationProperties(BrowserConfig.class)
+@Scope("prototype")
 public class ChromeDriverServiceImpl implements DriverManager {
 
     @Autowired

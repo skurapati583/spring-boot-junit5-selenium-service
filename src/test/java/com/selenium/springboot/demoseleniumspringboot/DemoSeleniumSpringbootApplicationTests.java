@@ -5,6 +5,7 @@ import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
@@ -12,6 +13,13 @@ class DemoSeleniumSpringbootApplicationTests {
 
     @Autowired
     DriverManager driverManager;
+
+    @Value("${app.youtube.url}")
+    private String youtubeURL;
+
+    @Value("${app.google.url}")
+    private String googleURL;
+
 
     @BeforeEach
     void setUp() {
@@ -24,8 +32,15 @@ class DemoSeleniumSpringbootApplicationTests {
     }
 
     @Test
-    void contextLoads() {
-        driverManager.getWebDriver().get("https://www.youtube.com");
+    void testYoutube() {
+        var driver = driverManager.getWebDriver();
+        driver.get(youtubeURL);
+    }
+
+    @Test
+    void testGoogle() {
+        var driver = driverManager.getWebDriver();
+        driver.get(googleURL);
     }
 
 }

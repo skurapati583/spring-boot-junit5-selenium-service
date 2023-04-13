@@ -7,6 +7,7 @@ import org.openqa.selenium.firefox.FirefoxOptions;
 import org.openqa.selenium.remote.RemoteWebDriver;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
+import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Service;
 
 import java.net.MalformedURLException;
@@ -14,6 +15,7 @@ import java.net.URL;
 
 @Service
 @ConditionalOnProperty(name = "browsers.default-driver", havingValue = "firefox")
+@Scope("prototype")
 public class FirefoxDriverServiceImpl implements DriverManager {
 
     @Autowired

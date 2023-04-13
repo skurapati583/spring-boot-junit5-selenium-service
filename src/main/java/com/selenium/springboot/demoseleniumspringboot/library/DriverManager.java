@@ -25,6 +25,6 @@ public interface DriverManager {
 
     void createLocalDriver();
 
-    void createRemoteDriver() throws MalformedURLException;
+    void createRemoteDriver();
 
 }
