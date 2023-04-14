@@ -4,6 +4,7 @@ import com.selenium.springboot.demoseleniumspringboot.library.DriverManager;
 import com.selenium.springboot.demoseleniumspringboot.utils.ElementActions;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
@@ -42,6 +43,7 @@ class DemoSeleniumSpringbootApplicationTests {
     }
 
     @Test
+    @DisplayName("Test for youtube url validation")
     void testYoutube() {
         elementActions.launchURL(youtubeURL);
         elementActions.enterText("#search-input > #search", youtubeSearchTerm);
@@ -49,6 +51,7 @@ class DemoSeleniumSpringbootApplicationTests {
     }
 
     @Test
+    @DisplayName("Test for google url validation")
     void testGoogle() {
         elementActions.launchURL(googleURL);
     }

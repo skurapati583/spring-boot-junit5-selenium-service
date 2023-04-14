@@ -26,9 +26,13 @@ public class ChromeDriverServiceImpl implements DriverManager {
     @Override
     public void initializeWebDriverSession() {
         if (browserConfig.isEnableGrid()) {
+            LOGGER.INSTANCE.logMessage("Grid is enabled.");
             createRemoteDriver();
+            LOGGER.INSTANCE.logMessage("RemoteWebDriver instance created.");
         } else {
+            LOGGER.INSTANCE.logMessage("Local execution is enabled");
             createLocalDriver();
+            LOGGER.INSTANCE.logMessage("LocalWebDriver instance created");
         }
     }
 
